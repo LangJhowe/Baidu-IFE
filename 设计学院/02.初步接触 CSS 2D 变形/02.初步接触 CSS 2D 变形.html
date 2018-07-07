@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02.初步接触 CSS 2D 变形</title>
+    <style>
+        html,body{
+          margin: 0;
+          padding: 0;
+        }
+        .item{
+          width: 300px;
+          height: 80px;
+          background-color: blue;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top:10px;
+          position: relative;
+        }
+        .text{
+          display: inline-block;
+          background-color: orangered;
+          width: 150px;
+        }
+        .porperty{
+          position: absolute;
+          top: 0;
+          left: 0;
+          color: #fff;
+        }
+        .translate{
+          -webkit-transform: translate(10px,20px);
+          -moz-transform: translate(10px,20px);
+          -ms-transform: translate(10px,20px);
+          -o-transform: translate(10px,20px);
+          transform: translate(10px,20px);
+        }
+        .scale{
+          -webkit-transform: scale(0.25);
+          -moz-transform: scale(0.25);
+          -ms-transform: scale(0.25);
+          -o-transform: scale(0.25);
+          transform: scale(0.25);
+        }
+        .skew{
+          -webkit-transform: skew(30deg);
+          -moz-transform: skew(30deg);
+          -ms-transform: skew(30deg);
+          -o-transform: skew(30deg);
+          transform: skew(30deg);
+        }
+        .rotate{
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        .all{
+          -webkit-transform: translate(10px,20px) scale(0.25) skew(-30deg) rotate(45deg);
+          -moz-transform: translate(10px,20px) scale(0.25) skew(-30deg) rotate(45deg);
+          -ms-transform: translate(10px,20px) scale(0.25) skew(-30deg) rotate(45deg);
+          -o-transform: translate(10px,20px) scale(0.25) skew(-30deg) rotate(45deg);
+          transform: translate(10px,20px) scale(0.25) skew(-30deg) rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">
+          <div class="porperty">normal</div>
+          <span class="text normal">box1</span>
+        </div>
+        <div class="item">
+            <div class="porperty">translate(10px,20px)</div>
+          <span class="text translate">box2</span>
+        </div>
+        <div class="item">
+          <div class="porperty">scale(0.25)</div>
+          <span class="text scale">box3</span>
+        </div>
+        <div class="item">
+          <div class="porperty">skew(-30deg)</div>          
+          <span class="text skew">box4</span>
+        </div>
+        <div class="item">
+          <div class="porperty">rotate(45deg)</div>          
+          <span class="text rotate">box5</span>
+        </div>
+        <div class="item">
+          <div class="porperty">rotate</div>
+          <span class="text all">box6</span>
+        </div>
+    </div>
+    </script>
+</body>
+</html>
