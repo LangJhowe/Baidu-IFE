@@ -11,19 +11,21 @@
           height: 100%;
           margin: 0;
           padding: 0;
+          font-size: 20px;
         }
         .container{
-          width: 300px;
+          width: 600px;
           margin: 0 auto;
           margin-top: 30px;
         }
         .text-box{
-          width: 90px;
+          width: 120px;
           margin: 0 auto;
-          text-align: center
+          text-align: center;
+          
         }
         .btn-box{
-          width: 90px;
+          width: 120px;
           margin: 0 auto;
           margin-top: 20px;
           text-align: center;       
@@ -32,17 +34,26 @@
           border:1px solid black;
           border-radius: 5px;
           margin: 0 auto;
+          padding: 5px 10px;
+          /* outline: 0; */
+          outline: none;
+          cursor: pointer;
+        }
+        .btn:active{
+          background-color: rgb(155,155,155)
         }
         .text{
           display: inline-block;
           padding: 5px 10px;
           font-weight: bold;
+          transition-duration: .5s;
+          transition-timing-function: ease-out;
         }
         .line{
           height: 5px;
           background-color: blue;
-          transition-duration: 1s;
-          transition-timing-function: linear;
+          transition-duration: .5s;
+          transition-timing-function: ease-out;
         }
     </style>
   </head>
@@ -60,11 +71,14 @@
     let flag = true;
     function toggle(){
       let line = document.querySelector('.line')
+      let text = document.querySelector('.text')
       if(flag){
         // line.style.width = 0;
+        text.style.color = 'black'
         line.style.transform = 'scalex(0)'
       }else{
         // line.style.width = '100%';
+        text.style.color = 'blue'
         line.style.transform = 'scalex(1)'
       }
       flag= !flag
