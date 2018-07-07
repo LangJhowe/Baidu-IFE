@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>No.1 - 制作一个简单的菜单动画效果</title>
+    <style>
+        html,body{
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        .container{
+          width: 300px;
+          margin: 0 auto;
+          margin-top: 30px;
+        }
+        .text-box{
+          width: 90px;
+          margin: 0 auto;
+          text-align: center
+        }
+        .btn-box{
+          width: 90px;
+          margin: 0 auto;
+          margin-top: 20px;
+          text-align: center;       
+        }
+        .btn{
+          border:1px solid black;
+          border-radius: 5px;
+          margin: 0 auto;
+        }
+        .text{
+          display: inline-block;
+          padding: 5px 10px;
+          font-weight: bold;
+        }
+        .line{
+          height: 5px;
+          background-color: blue;
+          transition-duration: 1s;
+          transition-timing-function: linear;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-box">
+        <span class="text">前端学院</span>
+        <div class="line"></div>
+      </div>
+      <div class="btn-box">
+        <button class="btn" onclick="toggle()">切换样式</div>
+      </div>
+    </div>
+    <script>
+    let flag = true;
+    function toggle(){
+      let line = document.querySelector('.line')
+      if(flag){
+        // line.style.width = 0;
+        line.style.transform = 'scalex(0)'
+      }else{
+        // line.style.width = '100%';
+        line.style.transform = 'scalex(1)'
+      }
+      flag= !flag
+    }
+    </script>
+  </body>
+</html>
