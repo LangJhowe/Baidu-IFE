@@ -44,6 +44,7 @@
                 background: #fbf8f1;
                 border-radius: 100% 10% 50% 0% ;
                 transition: all 0.5s linear;
+                transform-origin: 0 70%;
                 transform: rotate(-5deg)
             }
             .ear-wrap .right {
@@ -51,6 +52,7 @@
                 right: 0;
                 border-radius: 10% 100% 0% 50%;
                 background: #f1ac2b;
+                transform-origin: 100% 70%;
                 transform: rotate(5deg)
             }
             /* 头发 */
@@ -225,10 +227,8 @@
             mouthLeft.style.borderBottomLeftRadius = "50%"
             let earRight = document.querySelector('.ear-wrap .right')
             let earLeft = document.querySelector('.ear-wrap .left')
-            const offsetX = 0
-            const rNum = 15
-            earRight.style.transform = `rotate(${rNum}deg) translate3d(${offsetX}px,0,0)`
-            earLeft.style.transform = `rotate(-${rNum}deg) translate3d(-${offsetX}px,0,0)`
+            earRight.style.transform = `rotate(15deg)`
+            earLeft.style.transform = `rotate(-15deg)`
             eyeBottoms.forEach((item) =>{
                 item.style.transform = 'translate3d(0,-15px,0)'
             })
