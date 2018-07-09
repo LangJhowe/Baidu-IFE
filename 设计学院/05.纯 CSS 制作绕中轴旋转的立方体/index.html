@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05.纯 CSS 制作绕中轴旋转的立方体</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+        *, *:before, *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box; 
+        }
+        .box-wrap{
+            width: 800px;
+            height: 100%;
+            margin: 0 auto;
+            perspective: 500px;
+        }
+        .plane{
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            position: absolute;
+            top: 300px;
+            left: 300px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0,150,150,.5);
+            border: 1px solid rgba(255,255,255,.5);
+            color: rgba(255,255,255,.5);
+            transition: all .01s linear;
+        }
+        .p-front{
+            transform: rotateX(0deg) rotateY(0deg) translateZ(100px);
+        }
+        .p-back{
+            transform: rotateX(0deg) rotateY(180deg) translateZ(100px);
+        }
+        .p-left{
+            transform: rotateX(0deg) rotateY(270deg) translateZ(100px);
+        }
+        .p-right{
+            transform: rotateX(0deg) rotateY(90deg) translateZ(100px) 
+        }
+        .p-top{
+            transform: rotateX(90deg) translateZ(100px)
+
+        }
+        .p-bottom{
+            transform: rotateX(270deg) translateZ(100px)
+        }
+    </style>
+</head>
+<body>
+    <div class="box-wrap">
+        <div class="plane p-front">p-front</div>
+        <div class="plane p-back">p-back</div>
+        <div class="plane p-left">p-left</div>
+        <div class="plane p-right">p-right</div>
+        <div class="plane p-top">p-top</div>
+        <div class="plane p-bottom">p-bottom</div>
+    </div>
+    <script>
+    let ft = document.querySelector('.p-front')
+    let bk = document.querySelector('.p-back')
+    let lt = document.querySelector('.p-left')
+    let rt = document.querySelector('.p-right')
+    let tp = document.querySelector('.p-top')
+    let bm = document.querySelector('.p-bottom')
+    // let count = 1;
+    // let timer = setInterval(()=>{
+    //     count ++
+    //     ft.style.transform = `rotateY(${45 + 45*count}deg) translateZ(100px)`;
+    //     bk.style.transform = `rotateY(${-135 + 45*count}deg) translateZ(100px)`;
+    //     lt.style.transform = `rotateY(${-45 + 45*count}deg) translateZ(100px)`;
+    //     rt.style.transform = `rotateY(${135 + 45*count}deg) translateZ(100px)`;
+    //     tp.style.transform = `rotateX(90deg) rotate(${-45 - 45*count}deg) translateZ(100px)`;
+    //     bm.style.transform = `rotateX(-90deg) rotate(${45 + 45*count}deg) translateZ(100px)`;
+    // },1000)
+    let body = document.querySelector('body')
+
+    body.onmousedown = function(e){
+        console.log('========================================')
+        console.log(ft.style.transform)
+        let originX = e.clientX
+        let originY = e.clientY
+        let originRotateX
+        let originRotateY
+        if(ft.style.transform){
+            let firstLIndex = ft.style.transform.indexOf('(')//第一个左括号'('的索引
+            let firstDIndex = ft.style.transform.indexOf('d') //第一个右号'd'的索引
+            let secondLIndex = ft.style.transform.indexOf('(',firstLIndex + 1)//第二个左括号'('的索引
+            let secondDIndex = ft.style.transform.indexOf('d',firstDIndex + 1) //第二个右号'd'的索引
+            originRotateX = parseFloat(ft.style.transform.substring(firstLIndex + 1,firstDIndex))
+            originRotateY = parseFloat(ft.style.transform.substring(secondLIndex + 1,secondDIndex))
+            console.log(originRotateY)
+        }else{
+            originRotateX = 0;
+            originRotateY = 0;
+        }
+        document.onmousemove = function(e){
+            console.log(originRotateX)
+            let deltaX = e.clientX - originX;
+            let deltaY = e.clientY - originY;
+            ft.style.transform = `rotateX(${originRotateX - deltaY/5}deg) rotateY(${originRotateY + deltaX/5}deg) translateZ(100px)`;
+            bk.style.transform = `rotateX(${originRotateX - deltaY/5}deg) rotateY(${originRotateY + 180 + deltaX/5}deg) translateZ(100px)`;
+            lt.style.transform = `rotateX(${originRotateX - deltaY/5}deg) rotateY(${originRotateY + 270 + deltaX/5}deg) translateZ(100px)`;
+            rt.style.transform = `rotateX(${originRotateX - deltaY/5}deg) rotateY(${originRotateY + 90 + deltaX/5}deg) translateZ(100px)`;
+            tp.style.transform = `rotateX(${originRotateX + 90 - deltaY/5}deg) rotate(${-originRotateY - deltaX/5}deg)translateZ(100px)`;
+            bm.style.transform = `rotateX(${originRotateX + 270 - deltaY/5}deg) rotate(${originRotateY + deltaX/5}deg)translateZ(100px)`;
+        }
+        document.onmouseup = function(e){
+            document.onmousemove = null;
+        }
+
+    }
+    </script>
+</body>
+</html>
