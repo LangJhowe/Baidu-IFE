@@ -31,7 +31,6 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            transition: all 0.5s linear;
         }
         .bg-img{
             position: absolute;
@@ -39,19 +38,24 @@
             height: 100%;
         }
         .bg-1{
-            transform: translate(-500px,0)
+            transform: translate(-500px,0);
+            transition: all 0.5s ease-in;
         }
         .bg-2{
-            transform: translate(0,350px)
+            transform: translate(0,350px);
+            transition: all 0.5s ease-out;
         }
         .bg-3{
-            transform: scale(0.1)
+            transform: scale(0.1);
+            transition: all 0.5s ease-in;
         }
         .bg-4{
-            transform: scale(2)
+            transform: scale(2);
+            transition: all 0.5s ease-out;
         }
         .bg-5{
-            transform: rotate(180deg) scale(0.1)
+            transform: rotate(180deg) scale(0.1);
+            transition: all 0.5s ease-in-out;
         }
         .sm-wrap{
             position: absolute;
