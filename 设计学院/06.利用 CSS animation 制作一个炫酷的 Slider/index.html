@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06.利用CSSanimation制作一个炫酷的Slider</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            overflow: hidden;
+        }
+        .slide-wrap{
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-wrap{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .bg-item{
+            /* display: none; */
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s linear;
+        }
+        .bg-img{
+            position: absolute;
+            width: 1200px;
+            height: 100%;
+        }
+        .bg-1{
+            transform: translate(-500px,0)
+        }
+        .bg-2{
+            transform: translate(0,350px)
+        }
+        .bg-3{
+            transform: scale(0.1)
+        }
+        .bg-4{
+            transform: scale(2)
+        }
+        .bg-5{
+            transform: rotate(180deg) scale(0.1)
+        }
+        .sm-wrap{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 20;
+        }
+        .sm-item{
+            /* opacity: .6; */
+            background-color: rgba(0, 0, 0, 1);
+            position: relative
+        }
+        .sm-img{
+            width: 200px;
+            height: 150px;
+        }
+        .sm-1{
+            /* opacity: 1; */
+        }
+        .img-cover{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .3);
+            z-index:10;
+        }
+        .bg-active{
+            display: block;
+            transform: translate(0,0) scale(1);
+            z-index: 5;
+        }
+        .sm-item:hover .img-cover,.sm-active .img-cover{
+            background-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-wrap">
+        <div class="bg-wrap">
+            <div class="bg-item bg-1">
+                <img class="bg-img" src="./images/1.jpg" alt="">
+            </div>
+            <div class="bg-item bg-2 bg-active">
+                <img class="bg-img" src="./images/2.jpg" alt="">
+            </div>
+            <div class="bg-item bg-3">
+                <img class="bg-img" src="./images/3.jpg" alt="">
+            </div>
+            <div class="bg-item bg-4">
+                <img class="bg-img" src="./images/4.jpg" alt="">
+            </div>
+            <div class="bg-item bg-5">
+                <img class="bg-img" src="./images/5.jpg" alt="">
+            </div>
+        </div>
+        <div class="sm-wrap">
+            <div class="sm-item sm-1">
+                <img class="sm-img" src="./images/1.jpg" alt="">
+                <div class="img-cover"></div>
+            </div>
+            <div class="sm-item sm-2 sm-active">
+                <img class="sm-img" src="./images/2.jpg" alt="">
+                <div class="img-cover"></div>
+            </div>
+            <div class="sm-item sm-3">
+                <img class="sm-img" src="./images/3.jpg" alt="">
+                <div class="img-cover"></div>
+            </div>
+            <div class="sm-item sm-4">
+                <img class="sm-img" src="./images/4.jpg" alt="">
+                <div class="img-cover"></div>
+            </div>
+            <div class="sm-item sm-5">
+                <img class="sm-img" src="./images/5.jpg" alt="">
+                <div class="img-cover"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    let smItems = document.querySelectorAll('.sm-item');
+    let bgItems = document.querySelectorAll('.bg-item');
+    smItems.forEach((item,index)=>{
+        item.onmousedown = function(){
+            console.log('work')
+            let currentBgItem = document.querySelector('.bg-active')
+            let currentSmItem = document.querySelector('.sm-active')
+            currentBgItem.classList.toggle('bg-active')
+            bgItems[index].classList.toggle('bg-active')
+            // currentBgItem.style.display = 'none'
+            // bgItems[index].style.display = 'block'
+            // bgItems[index].style.transform = 'translate(0,0) scale(1)'
+
+            currentSmItem.classList.toggle('sm-active')
+            item.classList.toggle('sm-active')
+            // currentBgItem.classList.remove('bg-active')
+            // currentSmItem.classList.remove('sm-active')            
+            // bgItems[index].classList.add('bg-active')
+            // item.classList.add('sm-active')
+        }
+    })
+    </script>
+</body>
+</html>
