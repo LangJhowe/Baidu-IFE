@@ -88,8 +88,8 @@
     let body = document.querySelector('body')
 
     body.onmousedown = function(e){
-        console.log('========================================')
-        console.log(ft.style.transform)
+        // console.log('========================================')
+        // console.log(ft.style.transform)
         let originX = e.clientX
         let originY = e.clientY
         let originRotateX
@@ -101,13 +101,13 @@
             let secondDIndex = ft.style.transform.indexOf('d',firstDIndex + 1) //第二个右号'd'的索引
             originRotateX = parseFloat(ft.style.transform.substring(firstLIndex + 1,firstDIndex))
             originRotateY = parseFloat(ft.style.transform.substring(secondLIndex + 1,secondDIndex))
-            console.log(originRotateY)
+            // console.log(originRotateY)
         }else{
             originRotateX = 0;
             originRotateY = 0;
         }
         document.onmousemove = function(e){
-            console.log(originRotateX)
+            // console.log(originRotateX)
             let deltaX = e.clientX - originX;
             let deltaY = e.clientY - originY;
             ft.style.transform = `rotateX(${originRotateX - deltaY/5}deg) rotateY(${originRotateY + deltaX/5}deg) translateZ(100px)`;
